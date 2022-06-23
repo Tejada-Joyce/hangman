@@ -34,11 +34,14 @@ const alphabet = [
   "Z",
 ];
 
-const Alphabet = ({ checkLetter }) => {
+const Alphabet = ({ setGuessedLetter }) => {
   return (
     <>
       {alphabet.map((letter) => (
-        <LetterButton key={letter} onClick={() => checkLetter(letter)}>
+        <LetterButton
+          key={letter}
+          onClick={() => setGuessedLetter(letter.toLowerCase())}
+        >
           {letter}
         </LetterButton>
       ))}
