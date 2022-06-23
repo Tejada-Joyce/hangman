@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Alphabet from "./components/Alphabet";
+import Movie from "./components/Movie";
 function App() {
+  const movieName = "Jurassic World";
+  const checkLetter = (letter) => {
+    if (movieName.includes(letter)) {
+      console.log(letter, "It's here!");
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Movie movieName={movieName} />
+      <Alphabet checkLetter={checkLetter} />
+    </>
   );
 }
 
