@@ -9,8 +9,7 @@ const Letter = styled.div`
   width: 10px;
 `;
 
-const Movie = ({ guessedLetter, setStrikes, setWon }) => {
-  const movieName = "Jurassic World";
+const Movie = ({ guessedLetter, movieName, setStrikes, setWon }) => {
   const [correctGuesses, setCorrectGuesses] = useState([]);
   useEffect(() => {
     if (movieName.toLowerCase().includes(guessedLetter)) {
@@ -20,12 +19,12 @@ const Movie = ({ guessedLetter, setStrikes, setWon }) => {
         setStrikes((prevSt) => prevSt + 1);
       }
     }
-  }, [guessedLetter, setStrikes]);
+  }, [guessedLetter, movieName, setStrikes]);
 
   useEffect(() => {
     const movieUniqueLetters = new Set(movieName.replaceAll(" ", "").split(""));
     if (movieUniqueLetters.size === correctGuesses.length) setWon(true);
-  }, [correctGuesses, setWon]);
+  }, [correctGuesses, movieName, setWon]);
 
   return (
     <div>

@@ -1,46 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import { Button } from "@chakra-ui/react";
+import { alphabet } from "../constants";
 
-const LetterButton = styled.button`
+const LetterButton = styled(Button)`
   margin: 10px;
   border: 1px solid grey;
 `;
-
-const alphabet = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
 
 const Alphabet = ({ setGuessedLetter, maxStrikes, won }) => {
   const [guessedLetters, setGuessedLetters] = useState([]);
   const clickHandler = useCallback(
     (letter) => {
-      setGuessedLetter(letter.toLowerCase());
-      setGuessedLetters((prevSt) => [...prevSt, letter]);
+      const lowerCaseLetter = letter.toLowerCase();
+      setGuessedLetter(lowerCaseLetter);
+      setGuessedLetters((prevSt) => [...prevSt, lowerCaseLetter]);
     },
     [setGuessedLetter]
   );
@@ -57,7 +31,7 @@ const Alphabet = ({ setGuessedLetter, maxStrikes, won }) => {
     };
   });
   return (
-    <>
+    <div>
       {alphabet.map((letter) => (
         <LetterButton
           key={letter}
@@ -69,7 +43,7 @@ const Alphabet = ({ setGuessedLetter, maxStrikes, won }) => {
           {letter}
         </LetterButton>
       ))}
-    </>
+    </div>
   );
 };
 

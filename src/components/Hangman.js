@@ -1,27 +1,28 @@
 import { memo } from "react";
+import { Image } from "@chakra-ui/react";
 
 import again from "../img/arrow.png";
 
 const Hangman = ({ src, maxStrikes, won }) => {
   if (won) {
-    return <img src={src} alt="happy person" />;
+    return <Image src={src} alt="happy person" />;
   }
   const refreshHandler = () => {
     window.location.reload();
   };
 
   if (!maxStrikes) {
-    return <img src={src} alt="still alive" />;
+    return <Image src={src} alt="still alive" />;
   }
 
   return (
     <div>
-      <img src={src} alt="end game" />
+      <Image src={src} alt="end game" />
       <p>Try again</p>
-      <img
+      <Image
         src={again}
         alt="Refresh arrow"
-        width={20}
+        boxSize="20px"
         onClick={refreshHandler}
       />
     </div>
