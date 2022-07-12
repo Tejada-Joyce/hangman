@@ -22,14 +22,19 @@ const Movie = ({ guessedLetter, movieName, setStrikes, setWon }) => {
   }, [guessedLetter, movieName, setStrikes]);
 
   useEffect(() => {
-    const movieUniqueLetters = new Set(movieName.replaceAll(" ", "").split(""));
+    const movieUniqueLetters = new Set(
+      movieName
+        .toLowerCase()
+        .replaceAll(/[^a-zA-Z]/g, "")
+        .split("")
+    );
     if (movieUniqueLetters.size === correctGuesses.length) setWon(true);
   }, [correctGuesses, movieName, setWon]);
 
   return (
     <div>
       {[...movieName].map((letter, idx) => {
-        if (letter !== " ") {
+        if (/[a-zA-Z]/.test(letter)) {
           return (
             <Fragment key={`letter_${idx}`}>
               {correctGuesses.includes(letter.toLowerCase()) ? (
@@ -40,7 +45,14 @@ const Movie = ({ guessedLetter, movieName, setStrikes, setWon }) => {
             </Fragment>
           );
         } else {
-          return <span key={`_${idx}`} style={{ marginLeft: 25 }}></span>;
+          return (
+            <span
+              key={`_${idx}`}
+              style={{ marginLeft: letter === " " ? 25 : 0 }}
+            >
+              {letter}
+            </span>
+          );
         }
       })}
     </div>
