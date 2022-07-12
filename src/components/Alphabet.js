@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import styled from "styled-components";
-import { Button } from "@chakra-ui/react";
-import { alphabet } from "../constants";
+import { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Button } from '@chakra-ui/react';
+import { alphabet } from '../constants';
 
 const LetterButton = styled(Button)`
   margin: 10px;
-  border: 1px solid grey;
 `;
 
 const Alphabet = ({ setGuessedLetter, maxStrikes, won }) => {
@@ -25,9 +24,9 @@ const Alphabet = ({ setGuessedLetter, maxStrikes, won }) => {
     }
   };
   useEffect(() => {
-    document.addEventListener("keydown", detectKeydown, true);
+    document.addEventListener('keydown', detectKeydown, true);
     return () => {
-      document.removeEventListener("keydown", detectKeydown, true);
+      document.removeEventListener('keydown', detectKeydown, true);
     };
   });
   return (
@@ -36,6 +35,7 @@ const Alphabet = ({ setGuessedLetter, maxStrikes, won }) => {
         <LetterButton
           key={letter}
           onClick={() => clickHandler(letter)}
+          colorScheme='yellow'
           disabled={
             maxStrikes || guessedLetters.includes(letter.toLowerCase()) || won
           }

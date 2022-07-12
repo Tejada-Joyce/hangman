@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Button,
+  Divider,
   FormControl,
   FormLabel,
   Select,
-  useToast,
-} from "@chakra-ui/react";
-import { genres } from "../constants";
+  useToast
+} from '@chakra-ui/react';
+import { genres } from '../constants';
 
 const MovieForm = ({ setMovieData }) => {
   const [genre, setGenre] = useState();
@@ -19,7 +20,7 @@ const MovieForm = ({ setMovieData }) => {
         `https://api.themoviedb.org/3/discover/movie?api_key=b11f13bb78577d3c7bc7dd29e72f09a1&with_genres=${genre}`
       );
       if (!response.ok) {
-        throw new Error("Something went wrong.");
+        throw new Error('Something went wrong.');
       }
       const data = await response.json();
       const movies = data?.results;
@@ -28,21 +29,22 @@ const MovieForm = ({ setMovieData }) => {
     } catch (error) {
       console.log(error);
       toast({
-        title: "Something went wrong.",
-        status: "error",
-        isClosable: true,
+        title: 'Something went wrong.',
+        status: 'error',
+        isClosable: true
       });
     }
   };
   return (
     <form onSubmit={handleSubmit}>
       <FormControl>
-        <FormLabel htmlFor="genre">Genre</FormLabel>
+        <FormLabel htmlFor='genre'>Genre</FormLabel>
         <Select
-          id="genre"
-          placeholder="Select Genre"
+          id='genre'
+          placeholder='Select Genre'
+          value={genre}
           onChange={(e) => setGenre(e.target.value)}
-          w="300px"
+          w='300px'
         >
           {genres.map((genre) => (
             <option key={genre.id} value={genre.id}>
@@ -50,7 +52,10 @@ const MovieForm = ({ setMovieData }) => {
             </option>
           ))}
         </Select>
-        <Button type="submit">Submit</Button>
+        <Divider h={5} borderColor='transparent' />
+        <Button type='submit' colorScheme='yellow' disabled={!genre}>
+          Submit
+        </Button>
       </FormControl>
     </form>
   );
