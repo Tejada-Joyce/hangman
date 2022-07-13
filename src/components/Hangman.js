@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Button, Image } from '@chakra-ui/react';
+import { Button, Image, VStack } from '@chakra-ui/react';
 import { MdRefresh } from 'react-icons/md';
 
 const Hangman = ({ src, maxStrikes, won }) => {
@@ -8,12 +8,12 @@ const Hangman = ({ src, maxStrikes, won }) => {
   };
   if (won) {
     return (
-      <div>
+      <VStack gap='10px'>
         <Image src={src} alt='happy person' />
         <Button onClick={refreshHandler} colorScheme='yellow'>
           New Game
         </Button>
-      </div>
+      </VStack>
     );
   }
   if (!maxStrikes) {
@@ -21,7 +21,7 @@ const Hangman = ({ src, maxStrikes, won }) => {
   }
 
   return (
-    <div>
+    <VStack gap='10px'>
       <Image src={src} alt='end game' />
       <Button
         onClick={refreshHandler}
@@ -30,7 +30,7 @@ const Hangman = ({ src, maxStrikes, won }) => {
       >
         Try Again
       </Button>
-    </div>
+    </VStack>
   );
 };
 
