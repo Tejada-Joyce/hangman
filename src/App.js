@@ -12,7 +12,7 @@ import fifth from './img/5.png';
 import sixth from './img/6.png';
 import hanged from './img/7.png';
 import winner from './img/win.png';
-import Hint from './components/Hints';
+import Hint from './components/Hint';
 
 const stages = [first, second, third, fourth, fifth, sixth, hanged];
 
@@ -26,8 +26,8 @@ function App() {
   if (won) src = winner;
   const movieName = movieData?.title;
   return (
-    <VStack minH='100vh' justify='center' gap='10px'>
-      {movieData && <Hint movieData={movieData} />}
+    <VStack minH='100vh' justify='center' gap='10px' mt='10px' mb='25px'>
+      {movieData && !won && !maxStrikes && <Hint movieData={movieData} />}
       <Hangman maxStrikes={maxStrikes} src={src} won={won} />
       {!movieData ? (
         <MovieForm setMovieData={setMovieData} />
