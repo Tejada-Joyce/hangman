@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useState } from "react";
-import styled from "styled-components";
+import { Fragment, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const Letter = styled.div`
   display: inline-block;
@@ -9,7 +9,7 @@ const Letter = styled.div`
   width: 10px;
 `;
 
-const Movie = ({ guessedLetter, movieName, setStrikes, setWon }) => {
+const Movie = ({ gaveUp, guessedLetter, movieName, setStrikes, setWon }) => {
   const [correctGuesses, setCorrectGuesses] = useState([]);
   useEffect(() => {
     if (movieName.toLowerCase().includes(guessedLetter)) {
@@ -25,10 +25,13 @@ const Movie = ({ guessedLetter, movieName, setStrikes, setWon }) => {
     const movieUniqueLetters = new Set(
       movieName
         .toLowerCase()
-        .replaceAll(/[^a-zA-Z]/g, "")
-        .split("")
+        .replaceAll(/[^a-zA-Z]/g, '')
+        .split('')
     );
-    if (movieUniqueLetters.size === correctGuesses.length) setWon(true);
+    if (movieUniqueLetters.size === correctGuesses.length) {
+      localStorage.clear();
+      setWon(true);
+    }
   }, [correctGuesses, movieName, setWon]);
 
   return (
@@ -37,7 +40,7 @@ const Movie = ({ guessedLetter, movieName, setStrikes, setWon }) => {
         if (/[a-zA-Z]/.test(letter)) {
           return (
             <Fragment key={`letter_${idx}`}>
-              {correctGuesses.includes(letter.toLowerCase()) ? (
+              {gaveUp || correctGuesses.includes(letter.toLowerCase()) ? (
                 <Letter>{letter}</Letter>
               ) : (
                 <Letter>-</Letter>
@@ -48,7 +51,7 @@ const Movie = ({ guessedLetter, movieName, setStrikes, setWon }) => {
           return (
             <span
               key={`_${idx}`}
-              style={{ marginLeft: letter === " " ? 25 : 0 }}
+              style={{ marginLeft: letter === ' ' ? 25 : 0 }}
             >
               {letter}
             </span>

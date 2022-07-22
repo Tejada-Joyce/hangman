@@ -25,6 +25,7 @@ const MovieForm = ({ setMovieData }) => {
       const data = await response.json();
       const movies = data?.results;
       const movie = movies[Math.floor(Math.random() * movies.length)];
+      localStorage.setItem('movie', JSON.stringify(movie));
       setMovieData(movie);
     } catch (error) {
       console.log(error);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { VStack } from '@chakra-ui/react';
 import Alphabet from './components/Alphabet';
 import Hangman from './components/Hangman';
@@ -21,6 +21,14 @@ function App() {
   const [strikes, setStrikes] = useState(0);
   const [movieData, setMovieData] = useState();
   const [won, setWon] = useState(false);
+  const [gaveUp, setGaveUp] = useState(false);
+
+  useEffect(() => {
+    const movieData = JSON.parse(localStorage.getItem('movie'));
+    if (movieData) {
+      setMovieData(movieData);
+    }
+  }, []);
   const maxStrikes = strikes >= stages.length - 1;
   let src = maxStrikes ? stages[stages.length - 1] : stages[strikes];
   if (won) src = winner;
@@ -28,12 +36,20 @@ function App() {
   return (
     <VStack minH='100vh' justify='center' gap='10px' mt='10px' mb='25px'>
       {movieData && !won && !maxStrikes && <Hint movieData={movieData} />}
-      <Hangman maxStrikes={maxStrikes} src={src} won={won} />
+      <Hangman
+        gaveUp={gaveUp}
+        setGaveUp={setGaveUp}
+        setMovieData={setMovieData}
+        maxStrikes={maxStrikes}
+        src={src}
+        won={won}
+      />
       {!movieData ? (
         <MovieForm setMovieData={setMovieData} />
       ) : (
         <>
           <Movie
+            gaveUp={gaveUp}
             guessedLetter={guessedLetter}
             movieName={movieName}
             setStrikes={setStrikes}
