@@ -39,7 +39,6 @@ function App() {
       <Hangman
         gaveUp={gaveUp}
         setGaveUp={setGaveUp}
-        setMovieData={setMovieData}
         maxStrikes={maxStrikes}
         src={src}
         won={won}

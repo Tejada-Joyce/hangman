@@ -24,7 +24,7 @@ const NewGameButton = () => {
   );
 };
 
-const Hangman = ({ gaveUp, setGaveUp, setMovieData, src, maxStrikes, won }) => {
+const Hangman = ({ gaveUp, setGaveUp, src, maxStrikes, won }) => {
   if (won) {
     return (
       <VStack gap='10px'>
