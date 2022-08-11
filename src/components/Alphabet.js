@@ -30,7 +30,7 @@ const Alphabet = ({ setGuessedLetter, maxStrikes, won }) => {
     };
   });
   return (
-    <div>
+    <div style={{ maxWidth: '95%' }}>
       {alphabet.map((letter) => (
         <LetterButton
           key={letter}

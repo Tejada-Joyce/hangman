@@ -39,7 +39,6 @@ const MovieForm = ({ setMovieData }) => {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl>
-        <FormLabel htmlFor='genre'>Genre</FormLabel>
         <Select
           id='genre'
           placeholder='Select Genre'
