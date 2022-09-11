@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   FormControl,
-  FormLabel,
   Select,
   useToast
 } from '@chakra-ui/react';
@@ -45,6 +44,8 @@ const MovieForm = ({ setMovieData }) => {
           value={genre}
           onChange={(e) => setGenre(e.target.value)}
           w='300px'
+          borderColor='black'
+          _hover={{ borderColor: '#3182ce' }}
         >
           {genres.map((genre) => (
             <option key={genre.id} value={genre.id}>

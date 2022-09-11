@@ -25,6 +25,10 @@ const NewGameButton = () => {
 };
 
 const Hangman = ({ gaveUp, setGaveUp, src, maxStrikes, won }) => {
+  const giveUpHandler = () => {
+    localStorage.clear();
+    setGaveUp(true);
+  };
   if (won) {
     return (
       <VStack gap='10px'>
@@ -38,7 +42,7 @@ const Hangman = ({ gaveUp, setGaveUp, src, maxStrikes, won }) => {
   }
 
   return (
-    <VStack gap='10px'>
+    <VStack gap='10px' minW={[null, null, null, '450px']}>
       <Image src={src} alt='end game' />
       <Stack direction={['column', 'row']}>
         {gaveUp ? (
@@ -46,7 +50,7 @@ const Hangman = ({ gaveUp, setGaveUp, src, maxStrikes, won }) => {
         ) : (
           <>
             <Button
-              onClick={() => setGaveUp(true)}
+              onClick={giveUpHandler}
               colorScheme='yellow'
               rightIcon={<BiTired />}
             >

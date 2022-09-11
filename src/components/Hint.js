@@ -40,7 +40,12 @@ const Hint = ({ movieData }) => {
     <div>
       <Button
         onClick={onOpen}
-        colorScheme='facebook'
+        bgColor='#2c2c2c'
+        color='white'
+        _hover={{
+          color: 'black',
+          bg: 'white'
+        }}
         rightIcon={<FaLightbulb />}
       >
         <span style={{ marginTop: 4 }}>
@@ -70,16 +75,25 @@ const Hint = ({ movieData }) => {
                   <FormControl>
                     <RadioGroup onChange={setOptionHint} value={optionHint}>
                       <Stack direction='column' spacing={5}>
-                        <Radio value='1' size='lg' colorScheme='facebook'>
+                        <Radio value='1' size='lg' colorScheme='yellow'>
                           See all genres
                         </Radio>
-                        <Radio value='2' size='lg' colorScheme='facebook'>
+                        <Radio value='2' size='lg' colorScheme='yellow'>
                           See release date
                         </Radio>
                       </Stack>
                     </RadioGroup>
                     <Divider h={5} borderColor='transparent' />
-                    <Button type='submit' mb='10px' colorScheme='facebook'>
+                    <Button
+                      type='submit'
+                      mb='10px'
+                      bgColor='#2c2c2c'
+                      color='white'
+                      _hover={{
+                        color: 'black',
+                        bg: 'white'
+                      }}
+                    >
                       Reveal Hint
                     </Button>
                   </FormControl>

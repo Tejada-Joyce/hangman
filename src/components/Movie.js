@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Letter = styled.span`
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #b7791f;
   text-align: center;
   margin: 10px;
   width: 10px;
@@ -11,12 +11,14 @@ const Letter = styled.span`
 const WordsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  font-size: 18px;
   max-width: 95%;
   column-gap: 20px;
   justify-content: center;
   align-items: center;
   line-height: 40px;
 `;
+
 const Movie = ({ gaveUp, guessedLetter, movieName, setStrikes, setWon }) => {
   const [correctGuesses, setCorrectGuesses] = useState([]);
   useEffect(() => {

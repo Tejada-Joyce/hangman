@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { VStack } from '@chakra-ui/react';
+import { Stack, VStack } from '@chakra-ui/react';
 import Alphabet from './components/Alphabet';
 import Hangman from './components/Hangman';
+import Hint from './components/Hint';
 import Movie from './components/Movie';
 import MovieForm from './components/MovieForm';
 import first from './img/1.png';
@@ -12,7 +13,7 @@ import fifth from './img/5.png';
 import sixth from './img/6.png';
 import hanged from './img/7.png';
 import winner from './img/win.png';
-import Hint from './components/Hint';
+import title from './img/Hangman-logo.png';
 
 const stages = [first, second, third, fourth, fifth, sixth, hanged];
 
@@ -34,34 +35,47 @@ function App() {
   if (won) src = winner;
   const movieName = movieData?.title;
   return (
-    <VStack minH='100vh' justify='center' gap='10px' mt='10px' mb='25px'>
-      {movieData && !won && !maxStrikes && <Hint movieData={movieData} />}
-      <Hangman
-        gaveUp={gaveUp}
-        setGaveUp={setGaveUp}
-        maxStrikes={maxStrikes}
-        src={src}
-        won={won}
-      />
+    <Stack
+      direction={['column', null, null, movieData ? 'row' : 'column']}
+      maxW={['95%', '85%', '80%', '95%']}
+      minH='100vh'
+      align='center'
+      justify='center'
+      gap='10px'
+      m={['10px auto 25px', null, null, '0px auto']}
+    >
       {!movieData ? (
-        <MovieForm setMovieData={setMovieData} />
+        <>
+          <img src={title} alt='hangman' style={{ maxWidth: '90%' }} />
+          <MovieForm setMovieData={setMovieData} />
+        </>
       ) : (
         <>
-          <Movie
+          <Hangman
             gaveUp={gaveUp}
-            guessedLetter={guessedLetter}
-            movieName={movieName}
-            setStrikes={setStrikes}
-            setWon={setWon}
-          />
-          <Alphabet
-            setGuessedLetter={setGuessedLetter}
+            setGaveUp={setGaveUp}
             maxStrikes={maxStrikes}
+            src={src}
             won={won}
           />
+          <VStack gap='10px'>
+            {!won && !maxStrikes && <Hint movieData={movieData} />}
+            <Movie
+              gaveUp={gaveUp}
+              guessedLetter={guessedLetter}
+              movieName={movieName}
+              setStrikes={setStrikes}
+              setWon={setWon}
+            />
+            <Alphabet
+              setGuessedLetter={setGuessedLetter}
+              maxStrikes={maxStrikes}
+              won={won}
+            />
+          </VStack>
         </>
       )}
-    </VStack>
+    </Stack>
   );
 }
 
